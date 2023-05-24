@@ -73,3 +73,4 @@ axs['endnote'].text(1, 0.5, '@sanje_analytica', va='center', ha='right', fontsiz
 ax_title = axs['title'].text(0.5, 0.5, "Pressure applied by Chelsea FC Women", color='white',
                              va='center', ha='center', path_effects=path_eff,
                              fontproperties=robotto_regular.prop, fontsize=30)
+#Qué onda mi Roger
