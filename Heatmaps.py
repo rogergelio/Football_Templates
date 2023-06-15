@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from matplotlib.colors import LinearSegmentedColormap
 from scipy.ndimage import gaussian_filter
-
 from mplsoccer import Pitch, VerticalPitch, FontManager, Sbopen
 bg_color='#33312b'
 
