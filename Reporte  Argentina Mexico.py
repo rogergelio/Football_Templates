@@ -5,15 +5,18 @@ Created on Tue Jun 13 16:29:59 2023
 @author: rogel
 """
 from statsbombpy import sb
+import pandas as pd
 import numpy as np
 from matplotlib import cm
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from mplsoccer import (VerticalPitch, Pitch, create_transparent_cmap,
                        FontManager, arrowhead_marker, Sbopen)
-from Metodos_Generales import plot_shotmap, plot_shots, joint_shotmap, plot_passes
+from Metodos_Generales import plot_shotmap, plot_shots, joint_shotmap, plot_passes, draw_passgrid
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.colors import to_rgba
+import gc
 
 
 fm_rubik = FontManager('https://raw.githubusercontent.com/google/fonts/main/ofl/'
@@ -33,6 +36,8 @@ away_color="#11CC00"
 lineup_home=events.iloc[0].tactics["lineup"]
 lineup_away=events.iloc[1].tactics["lineup"]
 
+home_formation=events.iloc[0].tactics["formation"]
+away_formation=events.iloc[1].tactics["formation"]
 
 parser = Sbopen()
 df_event, df_related, df_freeze, df_tactics = parser.event(match_id)
@@ -76,5 +81,12 @@ plot_shots(shots, df_freeze, home_team, away_team,df_lineup, home_color, away_co
 #Grid de pases
 plot_passes(events, lineup, tactics, home_team, away_team)
 plot_passes(events, lineup, tactics, away_team, home_team)
+
+#Passgrid
+events, related, freeze, players = parser.event(match_id)
+draw_passgrid(events, related, freeze, players, away_team, away_formation, home_team, away_color)
+events, related, freeze, players = parser.event(match_id)
+draw_passgrid(events, related, freeze, players, home_team, home_formation, away_team, home_color)
+
 
 
